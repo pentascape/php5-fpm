@@ -66,6 +66,14 @@ attribute 'php_fpm/package',
           :recipes => [ 'php5_fpm::install', 'php5_fpm:configure_pools', 'php5_fpm:configure_fpm' ],
           :default => "php5-fpm"
 
+attribute 'php_fpm/service',
+          :display_name => "PHP5-FPM Service Name",
+          :description => "Name of php-fpm service applicable to OS.",
+          :type => "string",
+          :required => true,
+          :recipes => [ 'php5_fpm::install', 'php5_fpm:configure_pools', 'php5_fpm:configure_fpm' ],
+          :default => "php5-fpm"
+
 attribute 'php_fpm/base_path',
           :display_name => "PHP5-FPM Package Base Path",
           :description => "Base path for php5-fpm for installation of pools and configuration.",

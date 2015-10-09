@@ -114,7 +114,7 @@ package node["php_fpm"]["package"] do
 end
 
 #Enable and Restart PHP5-FPM
-service node["php_fpm"]["package"] do
+service node["php_fpm"]["service"] do
     #Bug in 14.04 for service provider. Adding until resolved.
     if (platform?('ubuntu') && node['platform_version'].to_f == 14.04)
         provider Chef::Provider::Service::Upstart
@@ -132,5 +132,5 @@ end
 template "#{ node["php_fpm"]["base_path"]}/#{node["php_fpm"]["conf_file"] }" do
     source "php-fpm.erb"
     action :create
-    notifies :restart, "service[#{node["php_fpm"]["package"]}]", :delayed
+    notifies :restart, "service[#{node["php_fpm"]["service"]}]", :delayed
 end
