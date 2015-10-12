@@ -134,3 +134,10 @@ template "#{ node["php_fpm"]["base_path"]}/#{node["php_fpm"]["conf_file"] }" do
     action :create
     notifies :restart, "service[#{node["php_fpm"]["service"]}]", :delayed
 end
+
+#Override default php.ini with template
+template "#{node["php_fpm"]["base_path"]}/php.ini" do
+    source "php.erb"
+    action :create
+    notifies :restart, "service[#{node["php_fpm"]["service"]}]", :delayed
+end
